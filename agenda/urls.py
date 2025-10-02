@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('agenda/', views.lista_eventos),  ## Inclui as urls do app core
+    # path('', views.index),  ## Rota raiz para a view index
+    path('',RedirectView.as_view(url='/agenda/')),  ## Redireciona a rota raiz para /agenda/
 ]

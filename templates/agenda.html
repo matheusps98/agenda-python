@@ -1,0 +1,33 @@
+{% include 'models/header.html' %}
+<div class="container">
+  <h2>Ultimos Agendamentos</h2>
+  <!-- Versão alternativa se você tiver uma lista de eventos -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Data de Criação</th>
+          <th>Data do Evento</th>
+          <th>Usuário</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for evento in eventos %}
+        <tr>
+          <td>{{ evento.titulo }}</td>
+          <td>{{ evento.get_data_criacao }}</td>
+          <td>{{ evento.get_data_evento }}</td>
+          <td>{{ evento.usuario }}</td>
+        </tr>
+        {% endfor %} {% if not eventos %}
+        <tr>
+          <td colspan="4" class="no-data">Nenhum agendamento encontrado</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include 'models/footer.html' %}

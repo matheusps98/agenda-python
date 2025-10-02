@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .label {
+        font-weight: bold;
+      }
+
+      /* Estilos da tabela */
+      .table-container {
+        margin: 20px 0;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #333;
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      tr:hover {
+        background-color: #e9ecef;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .table-container {
+          border: none;
+          box-shadow: none;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        th,
+        td {
+          padding: 6px 8px;
+          font-size: 12px;
+        }
+      }
+
+      /* Estilos para quando não há dados */
+      .no-data {
+        text-align: center;
+        padding: 40px;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      /* Cabeçalho da tabela fixo para melhor visualização */
+      thead {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'models/navbar.html' %}
+  </body>
+</html>
