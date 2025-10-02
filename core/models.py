@@ -10,6 +10,7 @@ class Evento(models.Model):
     data_evento = models.DateTimeField(verbose_name='Data do Evento') ## verbose_name altera o nome do campo na interface de admin
     data_criacao = models.DateTimeField(auto_now=True, verbose_name='Data de Criação')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)  ## CASCADE deleta todos os eventos do usuario se o usuario for deletado
+    local = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         db_table = 'evento'

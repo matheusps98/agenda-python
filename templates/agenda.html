@@ -1,6 +1,9 @@
 {% include 'models/header.html' %}
 <div class="container">
-  <h2>Ultimos Agendamentos</h2>
+  <div class="header-title">
+    <h2>Ultimos Agendamentos</h2>
+    <a href="/agenda/evento" class="btn-novoagendamento">Novo Agendamento</a>
+  </div>
   <!-- Versão alternativa se você tiver uma lista de eventos -->
   <div class="table-container">
     <table>
@@ -10,6 +13,7 @@
           <th>Data de Criação</th>
           <th>Data do Evento</th>
           <th>Usuário</th>
+          <th>Local</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +23,7 @@
           <td>{{ evento.get_data_criacao }}</td>
           <td>{{ evento.get_data_evento }}</td>
           <td>{{ evento.usuario }}</td>
+          <td>{{ evento.local }}</td>
         </tr>
         {% endfor %} {% if not eventos %}
         <tr>

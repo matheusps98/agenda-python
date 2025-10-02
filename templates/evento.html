@@ -1,0 +1,74 @@
+{% include 'models/tags.html' %} {% include 'models/header.html' %}
+<style>
+  .event-form {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    textarea {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    label{
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+  }
+</style>
+<div class="container">
+  <div class="header-title">
+    <h2>Novo Agendamento</h2>
+    <a href="/agenda" class="btn-novoagendamento">Voltar para Agendamentos</a>
+  </div>
+  <form
+    id="event-form"
+    class="event-form"
+    method="post"
+    action="/agenda/evento/submit/"
+     >
+    {% csrf_token %}
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" value="{{ evento.titulo }}" required />
+    <label for="descricao">Descrição:</label>
+    <textarea rows="5" id="descricao" name="descricao" required>{{ evento.descricao }}</textarea>
+    <label for="data_evento">Data do evento:</label>
+    <input
+      type="datetime-local"
+      id="data_evento"
+      name="data_evento"
+      value="{{ evento.data_evento }}"
+      required
+    />
+    <label for="local">Local:</label>
+    <input type="text" id="local" name="local" value="{{ evento.local }}" required />
+    <button type="submit">Salvar</button>
+  </form>
+</div>
+
+{% include 'models/footer.html' %}

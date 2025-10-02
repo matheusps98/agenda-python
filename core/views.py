@@ -13,6 +13,10 @@ def logout_user(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
+def evento(request):
+    return render(request, 'evento.html')
+
+@login_required(login_url='/login/')
 def lista_eventos(request):
     usuario = request.user
     eventos = Evento.objects.filter(usuario=usuario)
@@ -33,5 +37,16 @@ def submit_login(request):
     else:
         return redirect('/')
 
+@login_required(login_url='/login/')
+def submit_evento(request):
+    if request.POST:
+        titulo = request.POST.get('titulo')
+        descricao = request.POST.get('descricao')
+        data_evento = request.POST.get('data_evento')
+        local = request.POST.get('local')
+        usuario = request.user
+        Evento.objects.create(titulo=titulo, descricao=descricao, data_evento=data_evento, usuario=usuario, local=local)
+
+    return redirect('/')
 # def index(request):
 #     return redirect('/agenda/')
