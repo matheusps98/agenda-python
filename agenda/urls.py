@@ -24,4 +24,8 @@ urlpatterns = [
     path('agenda/', views.lista_eventos),  ## Inclui as urls do app core
     # path('', views.index),  ## Rota raiz para a view index
     path('',RedirectView.as_view(url='/agenda/')),  ## Redireciona a rota raiz para /agenda/
+    path('login/', views.login_user),  ## Rota para a view de login
+    path('login/submit', views.submit_login),  ## Rota para a view de login
+    path('logout/', views.logout_user),  ## Rota para a view de logout
 ]
+    

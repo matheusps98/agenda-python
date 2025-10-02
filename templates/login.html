@@ -1,0 +1,203 @@
+{% include 'models/tags.html' %}
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    position: relative;
+  }
+
+  .form {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: beige;
+    --main-color: black;
+    padding: 20px;
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    position: relative;
+    z-index: 1;
+  }
+
+  .title {
+    color: var(--font-color);
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .title span {
+    color: var(--font-color-sub);
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+  }
+
+  .input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
+
+  .input:focus {
+    border: 2px solid var(--input-focus);
+  }
+
+  .login-with {
+    display: flex;
+    gap: 20px;
+  }
+
+  .button-log {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    color: var(--font-color);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--main-color);
+  }
+
+  .button-log:active,
+  .button-confirm:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+  }
+
+  .button-confirm {
+    margin: 50px auto 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .button-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px var(--main-color);
+  }
+</style>
+
+<div class="container">
+  <form class="form" action="submit" method="post">
+    {% csrf_token %}
+    <div class="title">
+      Bem vindo!,<br /><span>Faça login para continuar</span>
+    </div>
+    <input
+      class="input"
+      name="username"
+      placeholder="Usuario"
+      type="text"
+      required
+    />
+    <input
+      class="input"
+      name="password"
+      placeholder="Senha"
+      type="password"
+      required
+    />
+    <button class="button-confirm" type="submit">Vamos lá →</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Verifica se há mensagens de erro do Django
+    {% if messages %}
+      {% for message in messages %}
+        // Mostra toast de erro para cada mensagem
+        Swal.fire({
+          toast: true,
+          icon: 'error',
+          title: '{{ message }}',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+          background: '#fff',
+          iconColor: '#ff3838',
+          color: '#323232',
+          customClass: {
+            popup: 'custom-swal-popup'
+          },
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+      {% endfor %}
+    {% endif %}
+
+    // Opcional: Adicionar validação no submit do formulário
+    const form = document.querySelector('.form');
+    form.addEventListener('submit', function(e) {
+      const username = this.querySelector('input[name="username"]').value;
+      const password = this.querySelector('input[name="password"]').value;
+
+      if (!username || !password) {
+        e.preventDefault();
+        Swal.fire({
+          toast: true,
+          icon: 'warning',
+          title: 'Preencha todos os campos!',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: '#fff',
+          iconColor: '#ffa502',
+          color: '#323232'
+        });
+      }
+    });
+  });
+</script>
