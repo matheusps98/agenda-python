@@ -38,7 +38,9 @@
       <tbody>
       {% for evento in eventos %}
       <tr {% if evento.get_evento_atrasado %} style="color: red;"{% endif %}>
-        <td>{{ evento.titulo }}</td>
+                <td>
+                  {{ evento.titulo }}{% if evento.get_evento_atrasado %} (vencida){% endif %}
+                </td>
         <td>{{ evento.get_data_criacao }}</td>
         <td>{{ evento.get_data_evento }}</td>
         <td>{{ evento.usuario }}</td>
