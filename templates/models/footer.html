@@ -1,6 +1,6 @@
 <style>
     .footer {
-        background-color: #f8f9fa;
+        background-color: #fafbe6;
         text-align: center;
         padding: 15px 0;
         position: fixed;
@@ -12,7 +12,42 @@
     }
 </style>
 <div class="footer">
-    <p>Desenvolvido com ❤️ por Matheus</p>
+    <p>Desenvolvido com ❤️ por Matheus Silva</p>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Seleciona todos os links internos que não abrem em nova aba
+        const links = document.querySelectorAll('a[href^="/"]:not([target="_blank"])');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        // Define o tempo do delay em milissegundos
+        const navigationDelay = 1000;
+
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // 1. Impede a navegação padrão do link
+                e.preventDefault();
+
+                // 2. Mostra o overlay de carregamento
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'flex';
+                }
+
+                // 3. Define um timeout para navegar para a página de destino
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, navigationDelay);
+            });
+        });
+
+        // Opcional: Esconde o spinner se o usuário voltar usando o botão do navegador
+        window.addEventListener('pageshow', function (event) {
+            // A flag 'persisted' é true quando a página é carregada do cache (bfcache)
+            if (event.persisted && loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
+
 </html>

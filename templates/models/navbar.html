@@ -1,271 +1,168 @@
 <style>
   .navbar {
-    background: #5900ff;
-    padding: 0 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-  }
-
-  .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-  }
-
-  .nav-logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .nav-logo-icon {
-    font-size: 2rem;
-  }
-
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .nav-item {
-    position: relative;
-  }
-
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
-  }
-
-  .nav-link.active {
-    background: rgba(255, 255, 255, 0.2);
-  }
-
-  .nav-link-icon {
-    font-size: 1.2rem;
-  }
-
-  .dropdown {
-    position: relative;
-  }
-
-  .dropdown-content {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    min-width: 200px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    padding: 0.5rem 0;
-  }
-
-  .dropdown:hover .dropdown-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .dropdown-link {
-    color: #333;
-    text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    display: block;
-    transition: all 0.3s ease;
-  }
-
-  .dropdown-link:hover {
-    background: #f8f9fa;
-    color: #667eea;
-  }
-
-  .nav-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .btn {
-    padding: 0.6rem 1.5rem;
-    border-radius: 25px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .btn-primary {
-    background: white;
-    color: #667eea;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-outline:hover {
-    background: white;
-    color: #667eea;
-  }
-
-  .mobile-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-    .navbar {
-      padding: 0 1rem;
-    }
-
-    .mobile-toggle {
-      display: block;
-    }
-
-    .nav-menu {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background: #d3d3d3;
-      flex-direction: column;
-      padding: 2rem 0;
-      gap: 0;
-      transform: translateY(-100%);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .nav-menu.active {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .nav-item {
-      width: 100%;
-      text-align: center;
-    }
-
-    .nav-link {
-      padding: 1rem 2rem;
-      border-radius: 0;
-      justify-content: center;
-    }
-
-    .dropdown-content {
-      position: static;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: none;
-      display: none;
-    }
-
-    .dropdown.active .dropdown-content {
-      display: block;
-    }
-
-    .dropdown-link {
-      color: white;
-    }
-
-    .dropdown-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
+        background: #fafbe6;
+        padding: 0 2rem;
+        box-shadow: 3px 4px 0px 0px #000000;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border: 2px solid #b7d6e7;
+        border-radius: 8px;
+      }
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+      }
+      .nav-logo {
+        /* Texto escuro para o logo */
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #2D3748; /* Cinza escuro */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2rem;
+        align-items: center;
+      }
+      .nav-item {
+        position: relative;
+      }
+      .nav-link {
+        color: #111;
+        background: #fafbe6;
+        border: 2px solid #b7d6e7;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 3px 4px 0px 0px #000000;
+        margin: 0.2rem 0.5rem;
+      }
+      .nav-link:hover, .nav-link.active {
+        background: #f5f7d8;
+        color: #111;
+        box-shadow: 3px 4px 0px 0px #000000;
+      }
+      .nav-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      .btn, .btn-outline, .btn-novoagendamento {
+        padding: 0.6rem 1.5rem;
+        border-radius: 8px;
+        border: 2px solid #b7d6e7;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #fafbe6;
+        color: #111;
+        box-shadow: 3px 4px 0px 0px #000000;
+      }
+      .btn:hover, .btn-outline:hover, .btn-novoagendamento:hover {
+        background: #f5f7d8;
+        color: #111;
+        box-shadow: 3px 4px 0px 0px #000000;
+      }
+      .mobile-toggle {
+        /* Ícone do menu mobile escuro */
+        display: none;
+        background: none;
+        border: none;
+        color: #2D3748;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 0 1rem;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .nav-menu {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          /* Fundo branco para o menu mobile */
+          background: #ffffff;
+          flex-direction: column;
+          padding: 1rem 0;
+          gap: 0;
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          border-bottom: 1px solid #EAEAEA;
+          box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .nav-menu.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+        .nav-item {
+          width: 100%;
+          text-align: center;
+        }
+        .nav-link {
+          padding: 1rem 2rem;
+          border-radius: 0;
+          justify-content: center;
+        }
+      }
 </style>
 
 <nav class="navbar">
-  <div class="nav-container">
-    <a href="#" class="nav-logo">
-      Agendamentos
-    </a>
-
-    <button class="mobile-toggle">☰</button>
-
-    <ul class="nav-menu">
-      <!-- <li class="nav-item">
-        <a href="#" class="nav-link active">
-          Início
-        </a>
-      </li> -->
-      <!-- <li class="nav-item dropdown">
-        <a href="#" class="nav-link">
-          <span class="nav-link-icon">📊</span>
-          Serviços
-        </a>
-        <div class="dropdown-content">
-          <a href="#" class="dropdown-link">Web Design</a>
-          <a href="#" class="dropdown-link">Desenvolvimento</a>
-          <a href="#" class="dropdown-link">Marketing</a>
-          <a href="#" class="dropdown-link">Consultoria</a>
-        </div>
-      </li> -->
-      <li class="nav-item">
-        <a href="/agenda" class="nav-link active">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">
           Agendamentos
         </a>
-      </li>
-      <li class="nav-item">
-        <a href="/agenda/evento" class="nav-link">
-          Evento
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="/logout" class="nav-link" style="color: #ffffff;">
-          <i class="fa-solid fa-right-from-bracket"></i> Sair
-        </a>
-      </li>
-    </ul>
-
-    <div class="nav-actions">
-      <a href="/admin" class="btn btn-outline"><i class="fa-solid fa-user-tie"></i> Administração</a>
-    </div>
-  </div>
-</nav>
-
+        <button class="mobile-toggle">☰</button>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/agenda" class="nav-link active">
+               <i class="fa-solid fa-calendar-check"></i>
+              Agendamentos
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a href="/agenda/evento" class="nav-link">
+              Evento
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a href="/admin" class="btn btn-outline"><i class="fa-solid fa-user-tie"></i> Administração</a>
+          </li>
+        </ul>
+        <div class="nav-actions">
+          <a href="/logout" class="nav-link">
+              <i class="fa-solid fa-right-from-bracket"></i> Sair
+            </a>
+        </div>
+      </div>
+    </nav>
+    
 <script>
   document
     .querySelector(".mobile-toggle")
