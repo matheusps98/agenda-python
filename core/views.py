@@ -3,6 +3,8 @@ from core.models import Evento
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from datetime import datetime, timedelta
+from django.http.response import Http404, JsonResponse
 # Create your views here.
 
 def login_user(request):
@@ -23,7 +25,9 @@ def evento(request, id_evento=None):
 @login_required(login_url='/login/')
 def lista_eventos(request):
     usuario = request.user
-    eventos = Evento.objects.filter(usuario=usuario)
+    data_atual = datetime.now() - timedelta(hours=1)
+    eventos = Evento.objects.filter(usuario=usuario,
+                                     data_evento__gt=data_atual)  ## Filtra os eventos do usuario logado
     dados = {'eventos': eventos}  ## Cria um dicionario com os eventos
     return render(request, 'agenda.html', dados)  ## Renderiza o template agenda.html
 
@@ -41,16 +45,6 @@ def submit_login(request):
     else:
         return redirect('/')
     
-@login_required(login_url='/login/')    
-def delete_evento(request, id_evento):
-    usuario = request.user
-    evento = Evento.objects.get(id=id_evento)
-    if evento.usuario == usuario:
-        evento.delete()
-        messages.success(request, "Evento deletado com sucesso.")
-    else:
-        messages.error(request, "Você não tem permissão para deletar este evento.")
-    return redirect('/agenda/')
 
 @login_required(login_url='/login/')
 def submit_evento(request):
@@ -67,5 +61,23 @@ def submit_evento(request):
              Evento.objects.create(titulo=titulo, descricao=descricao, data_evento=data_evento, usuario=usuario, local=local)
         
     return redirect('/')
-# def index(request):
-#     return redirect('/agenda/')
+
+@login_required(login_url='/login/')    
+def delete_evento(request, id_evento):
+    usuario = request.user
+    try:
+        evento = Evento.objects.get(id=id_evento)
+    except Evento.DoesNotExist:
+        raise Http404("Evento não encontrado.")
+    if evento.usuario == usuario:
+        evento.delete()
+        messages.success(request, "Evento deletado com sucesso.")
+    else:
+        messages.error(request, "Você não tem permissão para deletar este evento.")
+    return redirect('/agenda/')
+
+@login_required(login_url='/login/')
+def json_lista_evento(request):
+    usuario = request.user
+    eventos = Evento.objects.filter(usuario=usuario).values('id', 'titulo', 'descricao', 'data_evento', 'data_criacao', 'local')  ## Filtra os eventos do usuario logado e retorna como dicionario
+    return JsonResponse(list(eventos), safe=False)  ## Retorna a lista de eventos em formato JSON

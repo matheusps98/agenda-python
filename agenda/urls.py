@@ -29,6 +29,7 @@ urlpatterns = [
     path('agenda/evento/delete/<int:id_evento>/', views.delete_evento),  ## Rota para deletar evento, passando o id do evento como parametro
     path('agenda/evento/submit/', views.submit_evento),  ## Rota para submissão do formulário de evento
     path('',RedirectView.as_view(url='/agenda/')),  ## Redireciona a rota raiz para /agenda/
+    path('agenda/lista', views.json_lista_evento),  ## Rota para a view que retorna a lista de eventos em JSON
     path('login/', views.login_user),  ## Rota para a view de login
     path('login/submit', views.submit_login),  ## Rota para a view de login
     path('logout/', views.logout_user),  ## Rota para a view de logout

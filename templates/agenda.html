@@ -36,21 +36,21 @@
         </tr>
       </thead>
       <tbody>
-        {% for evento in eventos %}
-        <tr>
-          <td>{{ evento.titulo }}</td>
-          <td>{{ evento.get_data_criacao }}</td>
-          <td>{{ evento.get_data_evento }}</td>
-          <td>{{ evento.usuario }}</td>
-          <td>{{ evento.local }}</td>
-          <td>
-            <a href="/agenda/evento/{{ evento.id }}" class="btn-editar"><i class="fa-solid fa-pen-to-square"></i></a>
-            <a href="/agenda/evento/delete/{{ evento.id }}/" class="btn-deletar">
-            <i class="fa-solid fa-trash"></i>
-            </a>
-          </td>
-        </tr>
-        {% endfor %} 
+      {% for evento in eventos %}
+      <tr {% if evento.get_evento_atrasado %} style="color: red;"{% endif %}>
+        <td>{{ evento.titulo }}</td>
+        <td>{{ evento.get_data_criacao }}</td>
+        <td>{{ evento.get_data_evento }}</td>
+        <td>{{ evento.usuario }}</td>
+        <td>{{ evento.local }}</td>
+        <td>
+          <a href="/agenda/evento/{{ evento.id }}" class="btn-editar"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="/agenda/evento/delete/{{ evento.id }}/" class="btn-deletar">
+          <i class="fa-solid fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %} 
         {% if not eventos %}
         <tr>
           <td colspan="6" class="no-data">Nenhum agendamento encontrado</td>
