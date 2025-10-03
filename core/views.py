@@ -13,7 +13,11 @@ def logout_user(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
-def evento(request):
+def evento(request, id_evento=None):
+    if id_evento:
+        evento = Evento.objects.get(id=id_evento)
+        dados = {'evento': evento}
+        return render(request, 'evento.html', dados)
     return render(request, 'evento.html')
 
 @login_required(login_url='/login/')
@@ -36,6 +40,17 @@ def submit_login(request):
             return redirect('/login/')
     else:
         return redirect('/')
+    
+@login_required(login_url='/login/')    
+def delete_evento(request, id_evento):
+    usuario = request.user
+    evento = Evento.objects.get(id=id_evento)
+    if evento.usuario == usuario:
+        evento.delete()
+        messages.success(request, "Evento deletado com sucesso.")
+    else:
+        messages.error(request, "Você não tem permissão para deletar este evento.")
+    return redirect('/agenda/')
 
 @login_required(login_url='/login/')
 def submit_evento(request):
@@ -45,8 +60,12 @@ def submit_evento(request):
         data_evento = request.POST.get('data_evento')
         local = request.POST.get('local')
         usuario = request.user
-        Evento.objects.create(titulo=titulo, descricao=descricao, data_evento=data_evento, usuario=usuario, local=local)
-
+        id_evento = request.POST.get('id_evento')
+        if id_evento:
+            Evento.objects.filter(id=id_evento).update(titulo=titulo, descricao=descricao, data_evento=data_evento, local=local)
+        else:
+             Evento.objects.create(titulo=titulo, descricao=descricao, data_evento=data_evento, usuario=usuario, local=local)
+        
     return redirect('/')
 # def index(request):
 #     return redirect('/agenda/')

@@ -44,7 +44,7 @@
 <div class="container">
   <div class="header-title">
     <h2>Novo Agendamento</h2>
-    <a href="/agenda" class="btn-novoagendamento">Voltar para Agendamentos</a>
+    <a href="/agenda" class="btn-novoagendamento"><i class="fa-solid fa-arrow-left"></i> Voltar para Agendamentos</a>
   </div>
   <form
     id="event-form"
@@ -54,6 +54,7 @@
      >
     {% csrf_token %}
     <label for="titulo">Título:</label>
+    <input type="number" name="id_evento" value="{{ evento.id }}" hidden>
     <input type="text" id="titulo" name="titulo" value="{{ evento.titulo }}" required />
     <label for="descricao">Descrição:</label>
     <textarea rows="5" id="descricao" name="descricao" required>{{ evento.descricao }}</textarea>
@@ -62,7 +63,7 @@
       type="datetime-local"
       id="data_evento"
       name="data_evento"
-      value="{{ evento.data_evento }}"
+      value="{{ evento.get_hora_evento }}"
       required
     />
     <label for="local">Local:</label>
